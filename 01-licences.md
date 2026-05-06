@@ -1,3 +1,20 @@
+---
+date: 2026-05-06
+affiliations:
+- id: polymtl
+  institution: Polytechnique Montréal
+  ror: 05f8d4e86
+  department: Bibliothèque
+authors:
+- name: Anita Mazur
+  email: anita.mazur@polymtl.ca
+  affiliation: polymtl
+- name: Élise Anne Basque
+  affiliation: polymtl
+- name: Olivia Fernandez Pereda
+  affiliation: polymtl
+---
+
 # Licences Creative Commons pour REL
 
 ## Les licences Creative Commons
