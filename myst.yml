@@ -1,0 +1,36 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 82c89bf0-08bd-4ad6-b69f-63f9bcc17965
+  #title: ELE3701A H2025
+  description: REL sur les licences CC
+  date: 17 Oct 2025
+  license:
+    content:
+      id: CC-BY-4.0
+    code:
+      id: MIT
+  open_access: true
+  affiliations:
+    - id: polymtl
+      institution: Polytechnique Montréal
+      ror: 05f8d4e86
+      department: Bibliothèque
+  authors:
+    - name: Anita Mazur
+      email: anita.mazur@polymtl.ca
+      affiliation: polymtl
+    - name: Élise Anne Basque
+      affiliation: polymtl
+    - name: Olivia Fernandez Pereda
+      affiliation: polymtl
+  github: https://github.com/jupyter-book/mystmd-quickstart
+  # To autogenerate a Table of Contents, run "myst init --write-toc"
+site:
+  template: book-theme
+  options:
+     favicon: favicon.ico
+     logo: ./images/site_logo.png
+     logo_dark: ./images/site_logo_dark.png
+     logo_text: REL sur les licences CC
+     style: poly.css
