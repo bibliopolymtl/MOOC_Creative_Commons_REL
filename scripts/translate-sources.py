@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Translate MyST book source files (Markdown + Notebooks) to French.
+"""Translate MyST book source files (Markdown + Notebooks) into the target language.
 
+Reads scripts/translation-config.yml for the source/target language pair.
 Reads myst.yml to discover source files, translates prose while preserving
 code blocks, math, directives, cross-references, and frontmatter.
-Writes translated files to _translated/fr/.
+Writes translated files to _translated/<target_lang>/.
 """
 
 import json
@@ -15,9 +16,16 @@ import yaml
 
 from deep_translator import GoogleTranslator
 
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TRANSLATED_DIR = os.path.join(ROOT_DIR, "_translated", "fr")
-TRANSLATOR = GoogleTranslator(source="en", target="fr")
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(SCRIPTS_DIR)
+
+with open(os.path.join(SCRIPTS_DIR, "translation-config.yml"), "r", encoding="utf-8") as f:
+    CONFIG = yaml.safe_load(f)
+
+SOURCE_LANG = CONFIG["source_lang"]
+TARGET_LANG = CONFIG["target_lang"]
+TRANSLATED_DIR = os.path.join(ROOT_DIR, "_translated", TARGET_LANG)
+TRANSLATOR = GoogleTranslator(source=SOURCE_LANG, target=TARGET_LANG)
 
 # Max chars per translation call (Google Translate limit is ~5000)
 CHUNK_SIZE = 4500
@@ -361,8 +369,8 @@ def collect_source_files(myst_config):
     return files
 
 
-def create_french_myst_yml():
-    """Create a myst.yml for the French build."""
+def create_translated_myst_yml():
+    """Create a myst.yml for the translated build."""
     with open(os.path.join(ROOT_DIR, "myst.yml"), "r", encoding="utf-8") as f:
         config = yaml.safe_load(f)
 
@@ -426,7 +434,7 @@ def copy_site_option_assets(config):
 
 
 def main():
-    print("=== Translating MyST sources to French ===")
+    print(f"=== Translating MyST sources {SOURCE_LANG} -> {TARGET_LANG} ===")
 
     # Clean previous translations
     if os.path.exists(TRANSLATED_DIR):
@@ -481,8 +489,8 @@ def main():
     # Copy any file referenced from site.options (favicon, logo, style, ...)
     copy_site_option_assets(config)
 
-    # Create French myst.yml
-    create_french_myst_yml()
+    # Create translated myst.yml
+    create_translated_myst_yml()
 
     print("=== Translation complete ===")
 

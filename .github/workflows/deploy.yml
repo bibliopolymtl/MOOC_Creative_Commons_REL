@@ -35,14 +35,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x
+      - name: Install Python dependencies
+        run: pip install deep-translator pyyaml
       - name: Install MyST
         run: npm install -g mystmd
       - name: Build HTML Assets
         run: myst build --html
-      - name: Install Python dependencies
-        run: pip install deep-translator pyyaml
-      - name: Translate and build French site
-        run: python3 scripts/build-french.py
+      - name: Translate and build English site
+        run: python3 scripts/build-translation.py
       - name: Inject Language Switcher
         run: python3 scripts/inject-language-switcher.py
       - name: Upload artifact
