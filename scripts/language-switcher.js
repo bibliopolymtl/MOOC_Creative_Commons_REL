@@ -23,8 +23,8 @@
     return el ? el.getAttribute('content') : fallback;
   }
   var baseUrl = (readMeta('base-url', '') || '').replace(/\/$/, '');
-  var SOURCE_LANG = readMeta('source-lang', 'en');
-  var TARGET_LANG = readMeta('target-lang', 'fr');
+  var SOURCE_LANG = readMeta('source-lang', 'fr');
+  var TARGET_LANG = readMeta('target-lang', 'en');
   var DEFAULT_LANG = readMeta('default-lang', TARGET_LANG);
 
   // === CSS for the widget (body::after pseudo-element) ===
