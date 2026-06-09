@@ -1,5 +1,6 @@
 ---
 date: 2026-05-06
+license: MIT
 affiliations:
 - id: polymtl
   institution: Polytechnique Montréal
